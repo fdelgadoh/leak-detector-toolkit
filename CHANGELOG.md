@@ -5,7 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2024-12-19
+## [1.1.0] - 2025-01-XX
+
+### Added
+- **LibreOffice/OpenDocument Support**: Added support for LibreOffice document formats
+  - `.odt` (OpenDocument Text) - LibreOffice Writer documents
+  - `.ods` (OpenDocument Spreadsheet) - LibreOffice Calc spreadsheets  
+  - `.odp` (OpenDocument Presentation) - LibreOffice Impress presentations
+  - `.odg` (OpenDocument Drawing) - LibreOffice Draw drawings
+- XML-based text extraction for OpenDocument formats
+- Comprehensive error handling for LibreOffice files
+- Updated documentation to reflect new format support
+
+## [1.0.0] - 2025-08-01
 
 ### Added
 - Initial release of Leak Detector Toolkit

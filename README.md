@@ -5,7 +5,7 @@ A comprehensive toolkit for detecting sensitive information leaks in Office docu
 ## 🚀 Features
 
 ### Office Document Analyzer
-- **Multi-format Support**: Analyzes `.docx`, `.xlsx`, `.pptx`, `.xls` files
+- **Multi-format Support**: Analyzes `.docx`, `.xlsx`, `.pptx`, `.xls` files and LibreOffice formats (`.odt`, `.ods`, `.odp`, `.odg`)
 - **Pattern Matching**: Customizable regex patterns for sensitive data detection
 - **Large File Handling**: Configurable file size limits with detailed logging
 - **Comprehensive Output**: CSV reports with file metadata and match details

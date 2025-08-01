@@ -5,7 +5,7 @@ Un kit completo de herramientas para detectar fugas de información sensible en 
 ## 🚀 Características
 
 ### Analizador de Documentos Office
-- **Soporte Multi-formato**: Analiza archivos `.docx`, `.xlsx`, `.pptx`, `.xls`
+- **Soporte Multi-formato**: Analiza archivos `.docx`, `.xlsx`, `.pptx`, `.xls` y formatos LibreOffice (`.odt`, `.ods`, `.odp`, `.odg`)
 - **Coincidencia de Patrones**: Patrones regex personalizables para detección de datos sensibles
 - **Manejo de Archivos Grandes**: Límites de tamaño de archivo configurables con registro detallado
 - **Salida Completa**: Reportes CSV con metadatos de archivos y detalles de coincidencias

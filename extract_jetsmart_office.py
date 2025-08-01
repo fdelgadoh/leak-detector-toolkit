@@ -22,6 +22,15 @@ except ImportError:
     print("xlrd not installed. Install with: pip install xlrd")
     XLRD_AVAILABLE = False
 
+# For LibreOffice/OpenDocument files (.odt, .ods, .odp, .odg)
+try:
+    import zipfile
+    import xml.etree.ElementTree as ET
+    ODT_AVAILABLE = True
+except ImportError:
+    print("zipfile/xml.etree not available for OpenDocument support")
+    ODT_AVAILABLE = False
+
 # Directory containing Office files - use relative path
 office_dir = 'doc_office_descargados'  # Target directory
 output_csv = 'jetsmart_office_results.csv'  # Output CSV file
@@ -165,6 +174,101 @@ def extract_text_from_xls(file_path):
         print(f"Error extracting text from {file_path}: {e}")
         return ""
 
+def extract_text_from_odt(file_path):
+    """Extract text from .odt (OpenDocument Text) files"""
+    if not ODT_AVAILABLE:
+        return ""
+    
+    try:
+        with zipfile.ZipFile(file_path, 'r') as zip_file:
+            # Read the content.xml file which contains the text
+            with zip_file.open('content.xml') as f:
+                tree = ET.parse(f)
+                root = tree.getroot()
+                
+                # Extract text from all text elements
+                text_elements = root.findall('.//{*}text')
+                text = ""
+                for element in text_elements:
+                    if element.text:
+                        text += element.text + " "
+                return text
+    except Exception as e:
+        print(f"Error extracting text from {file_path}: {e}")
+        return ""
+
+def extract_text_from_ods(file_path):
+    """Extract text from .ods (OpenDocument Spreadsheet) files"""
+    if not ODT_AVAILABLE:
+        return ""
+    
+    try:
+        with zipfile.ZipFile(file_path, 'r') as zip_file:
+            # Read the content.xml file which contains the spreadsheet data
+            with zip_file.open('content.xml') as f:
+                tree = ET.parse(f)
+                root = tree.getroot()
+                
+                # Extract text from all table cells
+                text_elements = root.findall('.//{*}table-cell')
+                text = ""
+                for element in text_elements:
+                    # Get text from paragraph elements within cells
+                    paragraphs = element.findall('.//{*}p')
+                    for p in paragraphs:
+                        if p.text:
+                            text += p.text + " "
+                return text
+    except Exception as e:
+        print(f"Error extracting text from {file_path}: {e}")
+        return ""
+
+def extract_text_from_odp(file_path):
+    """Extract text from .odp (OpenDocument Presentation) files"""
+    if not ODT_AVAILABLE:
+        return ""
+    
+    try:
+        with zipfile.ZipFile(file_path, 'r') as zip_file:
+            # Read the content.xml file which contains the presentation data
+            with zip_file.open('content.xml') as f:
+                tree = ET.parse(f)
+                root = tree.getroot()
+                
+                # Extract text from all text elements in slides
+                text_elements = root.findall('.//{*}text')
+                text = ""
+                for element in text_elements:
+                    if element.text:
+                        text += element.text + " "
+                return text
+    except Exception as e:
+        print(f"Error extracting text from {file_path}: {e}")
+        return ""
+
+def extract_text_from_odg(file_path):
+    """Extract text from .odg (OpenDocument Drawing) files"""
+    if not ODT_AVAILABLE:
+        return ""
+    
+    try:
+        with zipfile.ZipFile(file_path, 'r') as zip_file:
+            # Read the content.xml file which contains the drawing data
+            with zip_file.open('content.xml') as f:
+                tree = ET.parse(f)
+                root = tree.getroot()
+                
+                # Extract text from all text elements in drawings
+                text_elements = root.findall('.//{*}text')
+                text = ""
+                for element in text_elements:
+                    if element.text:
+                        text += element.text + " "
+                return text
+    except Exception as e:
+        print(f"Error extracting text from {file_path}: {e}")
+        return ""
+
 def extract_text_from_office_file(file_path):
     """Extract text from Office files based on file extension"""
     file_ext = file_path.suffix.lower()
@@ -177,6 +281,14 @@ def extract_text_from_office_file(file_path):
         return extract_text_from_pptx(file_path)
     elif file_ext == '.xls':
         return extract_text_from_xls(file_path)
+    elif file_ext == '.odt':
+        return extract_text_from_odt(file_path)
+    elif file_ext == '.ods':
+        return extract_text_from_ods(file_path)
+    elif file_ext == '.odp':
+        return extract_text_from_odp(file_path)
+    elif file_ext == '.odg':
+        return extract_text_from_odg(file_path)
     elif file_ext == '.doc':
         print(f"Skipping {file_path}: .doc files not supported in this version")
         return ""
@@ -195,7 +307,7 @@ def main():
     
     # Process each Office file in the directory and subdirectories
     # Note: Removed .doc and .ppt from supported formats
-    office_extensions = ['*.docx', '*.xls', '*.xlsx', '*.pptx']
+    office_extensions = ['*.docx', '*.xls', '*.xlsx', '*.pptx', '*.odt', '*.ods', '*.odp', '*.odg']
     office_files = []
     
     try:
