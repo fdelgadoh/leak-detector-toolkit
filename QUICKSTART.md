@@ -25,6 +25,10 @@ pip install -r requirements.txt
 # Ubuntu/Debian
 sudo apt install tesseract-ocr
 
+# Arch Linux
+sudo pacman -S tesseract tesseract-data-eng tesseract-data-spa
+set -gx TESSDATA_PREFIX /usr/share/tessdata
+
 # macOS
 brew install tesseract
 

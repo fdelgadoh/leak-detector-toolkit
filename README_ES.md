@@ -52,6 +52,15 @@ sudo apt update
 sudo apt install tesseract-ocr
 ```
 
+**Arch Linux**:
+```bash
+sudo pacman -S tesseract
+sudo pacman -S tesseract-data-eng
+sudo pacman -S tesseract-data-spa
+# Establecer variable de entorno para datos de Tesseract
+set -gx TESSDATA_PREFIX /usr/share/tessdata
+```
+
 **macOS**:
 ```bash
 brew install tesseract

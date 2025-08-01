@@ -84,6 +84,28 @@ sudo dnf install tesseract
 tesseract --version
 ```
 
+### Arch Linux
+
+```bash
+# Install Tesseract
+sudo pacman -S tesseract
+
+# Install English language data
+sudo pacman -S tesseract-data-eng
+
+# Install Spanish language data
+sudo pacman -S tesseract-data-spa
+
+# Set environment variable for Tesseract data (for fish shell)
+set -gx TESSDATA_PREFIX /usr/share/tessdata
+
+# For bash/zsh, add to your shell profile (~/.bashrc, ~/.zshrc):
+export TESSDATA_PREFIX=/usr/share/tessdata
+
+# Verify installation
+tesseract --version
+```
+
 ### macOS
 
 Using Homebrew:
