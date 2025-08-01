@@ -11,7 +11,7 @@ Get up and running with the Leak Detector Toolkit in 5 minutes!
 
 1. **Clone the repository**:
 ```bash
-git clone https://github.com/yourusername/leak-detector-toolkit.git
+git clone https://github.com/fdelgadoh/leak-detector-toolkit.git
 cd leak-detector-toolkit
 ```
 

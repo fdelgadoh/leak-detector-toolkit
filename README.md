@@ -35,7 +35,7 @@ pytesseract>=0.3.8
 
 1. **Clone the repository**:
 ```bash
-git clone https://github.com/yourusername/leak-detector-toolkit.git
+git clone https://github.com/fdelgadoh/leak-detector-toolkit.git
 cd leak-detector-toolkit
 ```
 
