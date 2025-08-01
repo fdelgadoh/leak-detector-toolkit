@@ -46,7 +46,6 @@ Thumbs.db
 
 # Project specific
 *.csv
-*.txt
 doc_office_descargados/
 imagenes_descargadas/
 results/
